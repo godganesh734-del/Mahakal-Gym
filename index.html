@@ -200,7 +200,57 @@
     .amenity-item:hover .icon-wrap { color: #fbbf24; filter: drop-shadow(0 0 16px rgba(251, 191, 36, 0.4)); }
     .amenity-item .icon-wrap svg { width: 100%; height: 100%; stroke-width: 1.8; fill: none; stroke: currentColor; }
     .amenity-item span { font-size: 0.7rem; font-weight: 500; color: #c8d0e0; }
+    /* logo styling with blend mode for seamless dark integration */
+    .logo-img {
+      height: 3rem;
+      width: auto;
+      mix-blend-mode: screen;
+      filter: drop-shadow(0 0 12px rgba(220, 38, 38, 0.15));
+      transition: filter 0.3s ease;
+      display: block;
+      flex-shrink: 0;
+    }
+    .logo-img:hover {
+      filter: drop-shadow(0 0 24px rgba(251, 191, 36, 0.2));
+    }
+    .footer-logo {
+      height: 4rem;
+      width: auto;
+      mix-blend-mode: screen;
+      filter: drop-shadow(0 0 20px rgba(220, 38, 38, 0.1));
+    }
+    /* navbar text fix - prevent clipping with full width */
+    .brand-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      min-width: max-content;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .brand-text {
+      white-space: nowrap;
+      font-size: 1.25rem;
+      line-height: 1.2;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      display: inline-block;
+    }
+    /* Fix for Mahakal spelling - ensure full word with proper spacing */
+    .brand-text .mahakal {
+      color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
+      background-image: linear-gradient(to right, #dc2626, #fbbf24);
+      display: inline-block;
+    }
+    .brand-text .gym {
+      color: white;
+      display: inline-block;
+      margin-left: 0.15rem;
+    }
     @media (max-width: 640px) {
+      .brand-text { font-size: 1rem; }
       .hero-headline { font-size: 2.4rem; line-height: 1.2; }
       .amenity-grid { grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
       .modal-content { padding: 1.5rem 1rem; }
@@ -215,9 +265,12 @@
 
   <!-- ===== NAVBAR ===== -->
   <nav class="glass-nav fixed top-0 left-0 w-full z-50 py-3 px-4 md:px-8 flex items-center justify-between">
-    <div class="flex items-center gap-2">
-      <span class="text-2xl font-extrabold tracking-tight text-white drop-shadow-md">🏋️<span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-gold-400"> Mahakal</span> Gym</span>
-      <span class="hidden sm:inline text-[10px] uppercase tracking-widest text-red-400/70 border-l border-red-500/30 pl-3 ml-1">Premium</span>
+    <div class="brand-wrapper">
+      <!-- Logo image with blend mode -->
+      <img src="https://i.ibb.co/67CY24Y7/image.png" alt="Mahakal Gym Logo" class="logo-img" />
+      <span class="brand-text">
+        <span class="mahakal">Mahakal</span><span class="gym">Gym</span>
+      </span>
     </div>
     <div class="hidden md:flex items-center space-x-6 text-sm font-medium">
       <a href="#home" class="hover:text-red-400 transition">Home</a>
@@ -259,7 +312,7 @@
           <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-gold-400 to-red-500 gold-glow-text">BEAST</span>
         </h1>
         <p class="mt-4 text-base md:text-lg text-gray-300/90 max-w-2xl mx-auto md:mx-0 leading-relaxed">
-          Mahakal Gym · where champions are forged.<br />
+          <span class="font-bold text-white">Mahakal Gym</span> · where champions are forged.<br />
           <span class="text-gold-400 font-semibold">81+ ★ 4.9-star reviews</span> — join the elite.
         </p>
         <div class="mt-8 flex flex-wrap gap-4 justify-center md:justify-start">
@@ -420,32 +473,38 @@
 
     <!-- ===== FOOTER ===== -->
     <footer class="bg-[#080606] border-t border-red-500/10 px-4 md:px-8 py-10">
-      <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div>
-          <h4 class="text-white font-bold text-lg flex items-center gap-2">🏋️ Mahakal Gym</h4>
-          <p class="text-gray-400 text-sm mt-2 max-w-xs">599, Grand Trunk Rd, Sirishtala, Maniktala, Serampore, West Bengal 712201</p>
+      <div class="max-w-6xl mx-auto">
+        <!-- Footer Logo centered with blend mode -->
+        <div class="flex justify-center mb-6">
+          <img src="https://i.ibb.co/67CY24Y7/image.png" alt="Mahakal Gym Logo" class="footer-logo" />
         </div>
-        <div>
-          <h5 class="text-white font-semibold">Quick links</h5>
-          <div class="mt-2 space-y-1 text-sm text-gray-400">
-            <a href="#home" class="block hover:text-red-400">Home</a>
-            <a href="#amenities" class="block hover:text-red-400">Amenities</a>
-            <a href="#pricing" class="block hover:text-red-400">Pricing</a>
-            <a href="#contact" class="block hover:text-red-400">Contact</a>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <h4 class="text-white font-bold text-lg text-center md:text-left">Mahakal Gym</h4>
+            <p class="text-gray-400 text-sm mt-2 max-w-xs mx-auto md:mx-0">599, Grand Trunk Rd, Sirishtala, Maniktala, Serampore, West Bengal 712201</p>
+          </div>
+          <div>
+            <h5 class="text-white font-semibold text-center md:text-left">Quick links</h5>
+            <div class="mt-2 space-y-1 text-sm text-gray-400 text-center md:text-left">
+              <a href="#home" class="block hover:text-red-400">Home</a>
+              <a href="#amenities" class="block hover:text-red-400">Amenities</a>
+              <a href="#pricing" class="block hover:text-red-400">Pricing</a>
+              <a href="#contact" class="block hover:text-red-400">Contact</a>
+            </div>
+          </div>
+          <div>
+            <h5 class="text-white font-semibold text-center md:text-left">Connect</h5>
+            <div class="mt-2 text-sm text-gray-400 space-y-1 text-center md:text-left">
+              <a href="https://wa.me/918582881818?text=Hi%20Mahakal%20Gym,%20I%20want%20to%20join%20the%20gym!" target="_blank" class="block hover:text-gold-400 transition">📱 WhatsApp</a>
+              <a href="https://www.facebook.com/people/Mahakal-Gym/61566980679791/?mibextid=ZbWKwL" target="_blank" class="block hover:text-gold-400 transition">📘 Facebook Page</a>
+              <a href="tel:8582881818" class="block hover:text-gold-400 transition">📞 8582881818</a>
+              <a href="tel:8100057646" class="block hover:text-gold-400 transition">📞 8100057646</a>
+              <span class="block text-gray-500">📍 Serampore, West Bengal</span>
+            </div>
           </div>
         </div>
-        <div>
-          <h5 class="text-white font-semibold">Connect</h5>
-          <div class="mt-2 text-sm text-gray-400 space-y-1">
-            <a href="https://wa.me/918582881818?text=Hi%20Mahakal%20Gym,%20I%20want%20to%20join%20the%20gym!" target="_blank" class="block hover:text-gold-400 transition">📱 WhatsApp</a>
-            <a href="https://www.facebook.com/people/Mahakal-Gym/61566980679791/?mibextid=ZbWKwL" target="_blank" class="block hover:text-gold-400 transition">📘 Facebook Page</a>
-            <a href="tel:8582881818" class="block hover:text-gold-400 transition">📞 8582881818</a>
-            <a href="tel:8100057646" class="block hover:text-gold-400 transition">📞 8100057646</a>
-            <span class="block text-gray-500">📍 Serampore, West Bengal</span>
-          </div>
-        </div>
+        <div class="text-center text-gray-600 text-xs border-t border-red-500/10 mt-10 pt-6">© 2026 Mahakal Gym · premium fitness hub</div>
       </div>
-      <div class="text-center text-gray-600 text-xs border-t border-red-500/10 mt-10 pt-6">© 2026 Mahakal Gym · premium fitness hub</div>
     </footer>
   </main>
 
